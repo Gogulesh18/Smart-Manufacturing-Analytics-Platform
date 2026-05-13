@@ -2,15 +2,33 @@
 
 This project now includes:
 
-- `dashboard/` - Streamlit app for analytics and prediction.
-- `frontend/` - React + Vite UI prototype (optional, not required for Streamlit run).
+- `api/` - FastAPI backend exposing KPI and prediction endpoints.
+- `frontend/` - React + Vite dashboard UI.
+- `dashboard/` - legacy Streamlit app (kept for reference).
 
-## Run Streamlit dashboard
+## Run backend API
 
 ```bash
+cd api
 pip install -r requirements.txt
-streamlit run dashboard/streamlit_app.py
+uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Open `http://localhost:8501`.
+## Run React frontend
+
+```bash
+cd frontend
+copy .env.example .env
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`.
+
+## API endpoints
+
+- `GET /health`
+- `GET /summary`
+- `GET /data/sample?limit=20`
+- `POST /predict`
 
